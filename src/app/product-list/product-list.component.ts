@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, AfterViewInit } from '@angular/core';
 
 import { products } from '../products';
 
@@ -7,8 +7,17 @@ import { products } from '../products';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements AfterViewInit {
   products = products;
+  contentWidth: number = 0;
+
+  constructor(private elRef: ElementRef) {
+
+  }
+
+  ngAfterViewInit() {
+    this.contentWidth = (this.elRef.nativeElement as HTMLElement).getBoundingClientRect().width;
+  }
 
   share() {
     window.alert('The product has been shared!');
