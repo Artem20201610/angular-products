@@ -1,4 +1,4 @@
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 
 import { products } from '../products';
 
@@ -7,7 +7,7 @@ import { products } from '../products';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements AfterViewInit {
+export class ProductListComponent implements OnInit {
   products = products;
   contentWidth: number = 0;
 
@@ -15,8 +15,9 @@ export class ProductListComponent implements AfterViewInit {
 
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.contentWidth = (this.elRef.nativeElement as HTMLElement).getBoundingClientRect().width;
+    console.log(this.contentWidth);
   }
 
   share() {
